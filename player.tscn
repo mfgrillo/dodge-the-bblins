@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://otgpl0x6dnwr"]
+
+[ext_resource type="Script" uid="uid://h74wkci134oh" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="Texture2D" uid="uid://qknlesj23vai" path="res://art/Larry1.png" id="2_onrkg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_onrkg")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_onrkg")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
+radius = 17.0
+height = 74.0
+
+[node name="Player" type="Area2D" unique_id=178075857]
+script = ExtResource("1_sweqy")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1926537740]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_dw050")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=898648343]
+shape = SubResource("CapsuleShape2D_b26j0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
